@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html lang="en-us"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+
+<h:head>
+    <title>Exercicio Campos e Conversores</title>
+</h:head>
+
+<h:body>
+    <h:form>
+    <p:panel header="Cadastro Pessoa">
+
+        <p:messages id="msg" closable="true"/>
+
+        <h:panelGrid columns="2">
+            <p:outputLabel value="Código"/>
+            <p:inputText size="2" maxlength="5" value="#{ex1Controller.p.cod}"
+                         required="true" requiredMessage="O campo código é obrigadorio!"
+                         converterMessage="Informe um valor válido! (apenas números)"/>
+
+            <p:outputLabel value="Nome"/>
+            <p:inputText size="40" maxlength="100" value="#{ex1Controller.p.nome}"
+                         required="true" requiredMessage="O campo nome é obrigadorio!"/>
+
+            <p:outputLabel value="CPF"/>
+            <p:inputText size="5" maxlength="5" value="#{ex1Controller.p.cpf}"
+                         required="true" requiredMessage="O campo quantidade é obrigadorio!"
+                         converterMessage="Informe um valor válido! (apenas números)"/>
+
+            <p:outputLabel value="Data de Nascimento"/>
+            <p:calendar readonlyInput="true" pattern="dd/MM/yyyy" value="#{ex1Controller.p.dtNasc}"
+                        required="true" requiredMessage="O campo data de nascimento é obrigadorio!"/>
+    </h:panelGrid>
+
+    </p:panel>
+
+    <p:panel header="Endereço">
+
+        <h:panelGrid columns="2">
+
+            <p:outputLabel value="Rua"/>
+            <p:inputText size="60" maxlength="200" value="#{ex1Controller.p.rua}"
+                         required="true" requiredMessage="O campo Rua é obrigadorio!"/>
+
+            <p:outputLabel value="Número"/>
+            <p:inputText size="2" maxlength="5" value="#{ex1Controller.p.num}"
+                         required="true" requiredMessage="O campo número é obrigadorio!"
+                         converterMessage="Informe um valor válido! (apenas números)"/>
+
+            <p:outputLabel value="Bairro"/>
+            <p:inputText size="40" maxlength="100" value="#{ex1Controller.p.bairro}"
+                         required="true" requiredMessage="O campo Bairro é obrigadorio!"/>
+
+            <p:outputLabel value="Cidade"/>
+            <p:inputText size="50" maxlength="100" value="#{ex1Controller.p.cidade}"
+                         required="true" requiredMessage="O campo Cidade é obrigadorio!"/>
+
+
+            <p:outputLabel for="@next" value="Estados "/>
+            <p:selectOneMenu id="longItemLabel" value="Selecione um">
+                <f:selectItem itemLabel="Acre" itemValue="Option1"/>
+                <f:selectItem itemLabel="Alagoas" itemValue="Option2"/>
+                <f:selectItem itemLabel="Bahia" itemValue="Option3"/>
+                <f:selectItem itemLabel="Ceará" itemValue="Option4"/>
+                <f:selectItem itemLabel="Espírito Santo" itemValue="Option5"/>
+                <f:selectItem itemLabel="Goiás" itemValue="Option6"/>
+                <f:selectItem itemLabel="Mato Grosso" itemValue="Option7"/>
+                <f:selectItem itemLabel="Mato Grosso do Sul" itemValue="Option8"/>
+                <f:selectItem itemLabel="Minas Gerais" itemValue="Option9"/>
+                <f:selectItem itemLabel="Paraíba" itemValue="Option3"/>
+                <f:selectItem itemLabel="Paraná" itemValue="Option3"/>
+                <f:selectItem itemLabel="Pernambuco" itemValue="Option3"/>
+                <f:selectItem itemLabel="Piauí" itemValue="Option3"/>
+                <f:selectItem itemLabel="Rio de Janeiro" itemValue="Option3"/>
+                <f:selectItem itemLabel="Rio Grande do Norte" itemValue="Option3"/>
+                <f:selectItem itemLabel="Rio Grande do Sul" itemValue="Option3"/>
+                <f:selectItem itemLabel="Rondônia" itemValue="Option3"/>
+                <f:selectItem itemLabel="Roraima" itemValue="Option3"/>
+                <f:selectItem itemLabel="Santa Catarina" itemValue="Option3"/>
+                <f:selectItem itemLabel="São Paulo" itemValue="Option3"/>
+                <f:selectItem itemLabel="Sergipe" itemValue="Option3"/>
+                <f:selectItem itemLabel="Tocantins" itemValue="Option3"/>
+                <f:selectItem itemLabel="Distrito Federal" itemValue="Option3"/>
+            </p:selectOneMenu>
+
+
+            <p:outputLabel value="CEP"/>
+            <p:inputText size="30" maxlength="15" value="#{ex1Controller.p.cep}"
+                         required="true" requiredMessage="O campo CEP é obrigadorio!"
+                         converterMessage="Informe um valor válido! (apenas números)"/>
+
+            <p:outputLabel value="Complemento"/>
+            <p:inputText size="100" maxlength="400" value="#{ex1Controller.p.complemento}"/>
+
+
+
+        </h:panelGrid>
+
+        <h:panelGrid>
+            <p:commandButton value="Salvar" actionListener="#{ex1Controller.salvar()}"
+                             update="msg"/>
+        </h:panelGrid>
+
+    </p:panel>
+    </h:form>
+</h:body>
+
+</html>

@@ -321,7 +321,7 @@ public class ProdutoForm extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         try {
             Connection conexao = DriverManager.getConnection("jdbc:mysql://localhost:3306/teste?useTimezone=true&serverTimezone=UTC",
-                    "root", "123");
+                    "root", "1234");
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Erro banco de dados");
             ex.printStackTrace();
