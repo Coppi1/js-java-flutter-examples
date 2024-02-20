@@ -11,7 +11,7 @@ console.log(array);
 array.unshift("proximo");
 console.log(array);
 
-//remove element e retorna ele
+//remove ultimo elemento e retorna ele
 //pop
 const ultimo_element = array.pop();
 console.log(array);
