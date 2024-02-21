@@ -1,4 +1,4 @@
-let imoveis = [];
+let imoveis = []
 
 let imovel = {
   proprietario: "",
@@ -7,7 +7,8 @@ let imovel = {
   garagem: ""
 };
 
-let opcao = "";
+let opcao = ""
+let garagem = ""
 
 do {
   opcao = prompt(
@@ -21,23 +22,34 @@ do {
 
   switch (opcao) {
     case "1":
-      imovel.proprietario = prompt("Digite o nome do proprietario");
-      imovel.qtd_quartos = prompt("Digite a quantidade de quartos");
-      imovel.qtd_banheiros = prompt("Digite a quantidade de banheiros");
+      imovel.proprietario = prompt("Digite o nome do proprietario")
+      imovel.qtd_quartos = prompt("Digite a quantidade de quartos")
+      imovel.qtd_banheiros = prompt("Digite a quantidade de banheiros")
       let possui_garagem = prompt(
         "O imovel possui garagem? - Sim ou 1 | Não ou 2"
       );
+      
       if (possui_garagem == "sim" || possui_garagem == "1") {
-        imovel.garagem = true;
+        imovel.garagem = true
+        garagem = "Possui"
       } else {
-        imovel.garagem = false;
+        imovel.garagem = false
+        garagem = "Não possui"
       }
+      
+      const confirmacao = confirm(
+        "Salvar este imóvel?\n"+
+        "\nProprietario: " + imovel.proprietario+
+        "\nQuantidade de quartos: " + imovel.qtd_quartos+
+        "\nQuntidade de banheiros: " + imovel.qtd_banheiros+
+        "\nPossui garagem: " + garagem
+      )
+      if (confirmacao){
+        imoveis.push(imovel)
+      }
+      console.log(imoveis)
 
-      imoveis.push(imovel);
-
-      console.log(imoveis);
-
-      break;
+      break
     case "2":
       if (imoveis.length == 0) {
         alert("Não há imóveis");
@@ -59,12 +71,12 @@ do {
         }
       }
 
-      break;
+      break
     case "3":
-      alert("Encerrando..");
-      break;
+      alert("Encerrando..")
+      break
 
     default:
-      alert("Opção Inválida");
+      alert("Opção Inválida")
   }
-} while (opcao !== "3");
+} while (opcao !== "3")
