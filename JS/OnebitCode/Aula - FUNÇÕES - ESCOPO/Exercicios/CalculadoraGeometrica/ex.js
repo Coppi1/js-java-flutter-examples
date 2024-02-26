@@ -9,7 +9,7 @@ do {
         "\n4 - Área do trapézio" +
         "\n5 - Área do circulo" +
         "\nQ - Quit - Sair"
-    );
+    )
 
 
 
