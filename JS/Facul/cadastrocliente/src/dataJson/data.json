@@ -1,0 +1,45 @@
+{
+  "tarefas": [
+    {
+      "id": "1",
+      "titulo": "Comprar leite",
+      "concluida": false
+    },
+    {
+      "id": "2",
+      "titulo": "Pagar contas",
+      "concluida": false
+    },
+    {
+      "id": "3",
+      "titulo": "Estudar programação",
+      "concluida": true
+    }
+  ],
+  "cidades": [
+    {
+      "id": "1",
+      "name": "New York"
+    },
+    {
+      "id": "2",
+      "name": "Rome"
+    },
+    {
+      "id": "3",
+      "name": "London"
+    },
+    {
+      "id": "4",
+      "name": "Istanbul"
+    },
+    {
+      "id": "5",
+      "name": "Paris"
+    },
+    {
+      "id": "8",
+      "name": "Brasil"
+    }
+  ]
+}
