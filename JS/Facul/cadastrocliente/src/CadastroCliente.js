@@ -13,6 +13,7 @@ function CadastroCliente() {
   const [email, setEmail] = useState("");
   const [dtnasc, setDtNasc] = useState("");
   const [cidades, setCidades] = useState([]);
+  const [selectedCity, setSelectedCity] = useState("");
 
   const enviarDados = () => {
     console.log(
@@ -111,6 +112,7 @@ function CadastroCliente() {
           />
           <br></br>
           <br></br>
+          <label> Cidade </label>
           <Dropdown
             value={selectedCity}
             onChange={(e) => setSelectedCity(e.value)}
@@ -128,10 +130,14 @@ function CadastroCliente() {
       <br></br>
       <h3>Teste de input na API</h3>
 
-      <Form>
+      <div style={{ display: "flex", flexDirection: "column" }}>
         <input type="text" id="inputDesc" placeholder="Informe uma descrição" />
+        <br></br>
+        <br></br>
         <button type="submit">Salvar</button>
-      </Form>
+        <br></br>
+        <br></br>
+      </div>
     </div>
   );
 }

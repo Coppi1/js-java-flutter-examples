@@ -38,10 +38,12 @@
       "name": "Paris"
     },
     {
-      "id": "1b8d"
+      "id": "6",
+      "name": "Brasil"
     },
     {
-      "id": "1663"
+      "id": "7",
+      "name": "JsonCity"
     }
   ]
 }
