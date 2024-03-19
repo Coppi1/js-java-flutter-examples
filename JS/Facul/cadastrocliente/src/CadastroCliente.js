@@ -1,11 +1,10 @@
-import React, { useEffect, useState, useRef } from "react";
+import React, { useEffect, useState } from "react";
 import { InputText } from "primereact/inputtext";
 import { Button } from "primereact/button";
 import { Card } from "primereact/card";
 import { Calendar } from "primereact/calendar";
 import { Dropdown } from "primereact/dropdown";
-import { InputMask } from "primereact/inputmask";
-import axios, { Axios } from "axios";
+import axios from "axios";
 
 function CadastroCliente() {
   const [nome, setNome] = useState("");
@@ -14,22 +13,45 @@ function CadastroCliente() {
   const [dtnasc, setDtNasc] = useState("");
   const [cidades, setCidades] = useState([]);
   const [selectedCity, setSelectedCity] = useState("");
+  // const [dadosDoForm, setDadosDoForm] = useState({
+  //   nome: "",
+  //   endereco: "",
+  // });
 
   const enviarDados = () => {
-    console.log(
-      "Enviando dados: \nNome: " +
-        nome +
-        "\nEmail: " +
-        email +
-        "\nDataNascimento: " +
-        dtnasc
-    );
+    const novoDadosDoForm = {
+      /// correção do cód abaixo comentado
+      nome: nome,
+      endereco: endereco,
+      cidades: selectedCity,
+      dtnasc: dtnasc,
+    };
+
+    // setDadosDoForm((dadosDoForm) => ({
+    //   ...dadosDoForm,
+    //   nome: nome,               // está enviando os dados atrasados para api, registros em brancp
+    //   endereco: endereco,
+    // }));
+
+    const incluirDados = async () => {
+      try {
+        const response = await axios.post(
+          "http://localhost:4000/clientes",
+          novoDadosDoForm
+        );
+        console.log("Resposta da API: ", response.data);
+      } catch (error) {
+        console.error("Erro ao enviar para API: ", error);
+      }
+    };
+
+    incluirDados();
   };
 
   const urlTeste = "http://localhost:4000/";
 
   // metodo para trazer os dados(GET) da API
-  async function puxaDados() {
+  async function carregaCidades() {
     try {
       await axios
         .get(urlTeste + "cidades") // (http://localhost:4000/cidades)
@@ -41,33 +63,9 @@ function CadastroCliente() {
 
   // use effect é um hook que inicia logo que a aplicação é iniciada
   useEffect(() => {
-    puxaDados();
+    carregaCidades();
     //console.log(cidades[0]);
   });
-
-  //
-  // useEffect(() => {
-  //   /
-  //   const buscarDados = async () => {
-  //     try {
-  //       const resposta = await Axios.get("http://localhost:3000/cidades");
-  //       console.log(resposta);
-  //       //console.log("Dados: " + resposta.name[0]);
-  //     } catch (error) {
-  //       console.log("Deu Ruim!!");
-  //     }
-  //   };
-  //   buscarDados();
-  // }, []);
-
-  // const [selectedCity, setSelectedCity] = useState(null);
-  // const cities = [
-  //   { name: "New York", code: "NY" },
-  //   { name: "Rome", code: "RM" },
-  //   { name: "London", code: "LDN" },
-  //   { name: "Istanbul", code: "IST" },
-  //   { name: "Paris", code: "PRS" },
-  // ];
 
   return (
     <div style={{ margin: "0 20%" }}>
@@ -97,8 +95,9 @@ function CadastroCliente() {
           <br></br>
           <label> Data de Nascimento </label>
           <Calendar
+            id="dtNasc"
             value={dtnasc}
-            onChange={(e) => setDtNasc(e.target.value)}
+            onChange={(e) => setDtNasc(e.value)}
           />
           <br></br>
           <br></br>
@@ -117,7 +116,7 @@ function CadastroCliente() {
             value={selectedCity}
             onChange={(e) => setSelectedCity(e.value)}
             options={cidades}
-            optionLabel="name"
+            optionLabel="nomecidade"
             placeholder="Select a City"
             className="w-full md:w-14rem"
           />
@@ -128,16 +127,6 @@ function CadastroCliente() {
       </Card>
       <br></br>
       <br></br>
-      <h3>Teste de input na API</h3>
-
-      <div style={{ display: "flex", flexDirection: "column" }}>
-        <input type="text" id="inputDesc" placeholder="Informe uma descrição" />
-        <br></br>
-        <br></br>
-        <button type="submit">Salvar</button>
-        <br></br>
-        <br></br>
-      </div>
     </div>
   );
 }
