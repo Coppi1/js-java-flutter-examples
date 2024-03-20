@@ -41,7 +41,8 @@
   "clientes": [
     {
       "nome": "",
-      "endereco": ""
+      "endereco": "",
+      "id": "1f7b"
     },
     {
       "id": "c29e",
@@ -127,6 +128,16 @@
         "nomecidade": "Chavantes"
       },
       "dtnasc": "2000-05-17T03:00:00.000Z"
+    },
+    {
+      "id": "d115",
+      "nome": "Teste99",
+      "endereco": "Rua teste",
+      "cidades": {
+        "id": "1",
+        "nomecidade": "Ourinhos"
+      },
+      "dtnasc": "2024-03-13T03:00:00.000Z"
     }
   ]
 }

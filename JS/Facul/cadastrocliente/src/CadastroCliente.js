@@ -5,19 +5,20 @@ import { Card } from "primereact/card";
 import { Calendar } from "primereact/calendar";
 import { Dropdown } from "primereact/dropdown";
 import axios from "axios";
+import { DataTable } from "primereact/datatable";
+import { Column } from "primereact/column";
 
 function CadastroCliente() {
+  const [clientes, setClientes] = useState([]);
   const [nome, setNome] = useState("");
   const [endereco, setEndereco] = useState("");
   const [email, setEmail] = useState("");
   const [dtnasc, setDtNasc] = useState("");
   const [cidades, setCidades] = useState([]);
   const [selectedCity, setSelectedCity] = useState("");
-  // const [dadosDoForm, setDadosDoForm] = useState({
-  //   nome: "",
-  //   endereco: "",
-  // });
+  const [atualizou, setAtualizou] = useEffect(false);
 
+  //Metodo para enviar dados do form para a API
   const enviarDados = () => {
     const novoDadosDoForm = {
       /// correção do cód abaixo comentado
@@ -40,6 +41,7 @@ function CadastroCliente() {
           novoDadosDoForm
         );
         console.log("Resposta da API: ", response.data);
+        setAtualizou(true);
       } catch (error) {
         console.error("Erro ao enviar para API: ", error);
       }
@@ -51,21 +53,33 @@ function CadastroCliente() {
   const urlTeste = "http://localhost:4000/";
 
   // metodo para trazer os dados(GET) da API
-  async function carregaCidades() {
+  async function listarCidades() {
     try {
       await axios
         .get(urlTeste + "cidades") // (http://localhost:4000/cidades)
         .then((response) => setCidades(response.data)); // se tiver resposta, seta array cidades com os dados
     } catch (error) {
-      console("Deu ruim");
+      console.log("Deu ruim ao listar cidades");
+    }
+  }
+
+  async function listarClientes() {
+    try {
+      await axios
+        .get(urlTeste + "clientes")
+        .then((response) => setClientes(response.data));
+    } catch (error) {
+      console.log("Deu ruim ao listar clientes");
     }
   }
 
   // use effect é um hook que inicia logo que a aplicação é iniciada
   useEffect(() => {
-    carregaCidades();
+    listarCidades();
     //console.log(cidades[0]);
-  });
+    listarClientes();
+    atualizou[false];
+  }, [atualizou]); // utiliza o atualizou para caso seja incluido um novo dado, ele fique true e atualize a table
 
   return (
     <div style={{ margin: "0 20%" }}>
@@ -126,7 +140,11 @@ function CadastroCliente() {
         </div>
       </Card>
       <br></br>
-      <br></br>
+      <DataTable value={clientes}>
+        <Column field="id" header="ID"></Column>
+        <Column field="nome" header="Nome"></Column>
+        <Column field="endereco" header="Endereco"></Column>
+      </DataTable>
     </div>
   );
 }
